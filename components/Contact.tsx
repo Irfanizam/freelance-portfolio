@@ -1,7 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { FaEnvelope, FaWhatsapp, FaInstagram, FaPaperPlane } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaWhatsapp,
+  FaInstagram,
+  FaPaperPlane,
+} from "react-icons/fa";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -12,10 +17,14 @@ export default function Contact() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     setFormData({
       ...formData,
@@ -38,7 +47,9 @@ Project Type: ${formData.projectType}
 
 Message: ${formData.message}`;
 
-    const whatsappUrl = `https://wa.me/60123456789?text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappUrl = `https://wa.me/60182964039?text=${encodeURIComponent(
+      whatsappMessage
+    )}`;
 
     // For now, we'll open WhatsApp. In production, you'd want to use a service like Formspree or EmailJS
     window.open(whatsappUrl, "_blank");
@@ -69,7 +80,8 @@ Message: ${formData.message}`;
             Let's Work Together
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Ready to start your project? Get in touch and let's discuss how I can help.
+            Ready to start your project? Get in touch and let's discuss how I
+            can help.
           </p>
         </div>
 
@@ -79,9 +91,9 @@ Message: ${formData.message}`;
               Get in Touch
             </h3>
             <p className="text-gray-600 mb-8">
-              Whether you're a student needing help with an assignment or a business
-              looking for a custom solution, I'm here to help. Reach out through any
-              of these channels:
+              Whether you're a student needing help with an assignment or a
+              business looking for a custom solution, I'm here to help. Reach
+              out through any of these channels:
             </p>
 
             <div className="space-y-6">
@@ -94,7 +106,9 @@ Message: ${formData.message}`;
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">Email</div>
-                  <div className="text-gray-600 text-sm">irfanizam34@gmail.com</div>
+                  <div className="text-gray-600 text-sm">
+                    irfanizam34@gmail.com
+                  </div>
                 </div>
               </a>
 
@@ -247,9 +261,22 @@ Message: ${formData.message}`;
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                className="w-full text-white px-8 py-4 rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                style={{
+                  backgroundColor: isSubmitting ? "#128C7E" : "#25D366",
+                }}
+                onMouseEnter={(e) => {
+                  if (!isSubmitting) {
+                    e.currentTarget.style.backgroundColor = "#128C7E";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isSubmitting) {
+                    e.currentTarget.style.backgroundColor = "#25D366";
+                  }
+                }}
               >
-                <FaPaperPlane />
+                <FaWhatsapp />
                 <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
               </button>
             </form>
@@ -259,9 +286,3 @@ Message: ${formData.message}`;
     </section>
   );
 }
-
-
-
-
-
-
